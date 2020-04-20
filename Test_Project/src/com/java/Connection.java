@@ -16,39 +16,42 @@ public class Connection {
 		ResultSet rs= null;
 		
 		try {
-			System.out.println("1");
+//			System.out.println("1");
 			
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			
-			System.out.println("2");
+//			System.out.println("2");
 			
 			conn = DriverManager.getConnection("jdbc:ucanaccess://D:\\mydb.accdb");
 			
-			System.out.println("3");
+//			System.out.println("3");
 			
 			String sql = "select * from account";
 			
-			System.out.println("4");
+//			System.out.println("4");
 			
 			pst = conn.prepareStatement(sql);
 			
-			System.out.println("5");
+//			System.out.println("5");
 			
 			rs = pst.executeQuery();
 			
-			System.out.println("6");
+//			System.out.println("6");
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				
-				System.out.println("Conncetion sucessful");
+//				System.out.println("Conncetion sucessful");
+				System.out.println("\n"+rs.getString("CustName")+ "\t" + 
+										rs.getString("CustAccountNo")+"\t" + 
+										rs.getString("Cust_A_Type")+"\t" +	
+										rs.getString("Cust_Curr")+"\t"+
+										rs.getString("Amount"));
 			}
-			else {
-				System.out.println("Check code ");
-			}
+
 			
 		}catch(HeadlessException | ClassNotFoundException | SQLException e) {
 			
-			System.out.println("Hello you are in Catch");
+//			System.out.println("Hello you are in Catch");
 			System.out.println(e.getMessage());
 			System.out.println(e.getCause());
 			System.out.println(e.getStackTrace());
